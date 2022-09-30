@@ -36,6 +36,8 @@ export default {
 
   <hr/>
 
+  <h2>Alumno: Valencia Vazquez You Giovanni</h2>
+
   <form @submit.prevent="registrarProyecto">
     <div class="mb-3">
       <label class="form-label">Proyecto</label>
