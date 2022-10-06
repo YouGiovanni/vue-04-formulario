@@ -1,28 +1,28 @@
 <script>
-    export default{
-        data:() => ({
-            proyecto: "",
-            tipo: "",
-            urgente: false,
-            proyectos:[],
-        }),
-        methods: {
-            registrarProyecto(){
-                const proyecto = {
-                    proyecto: this.proyecto,
-                    tipo: this.tipo,
-                    urgente: this.urgente,
-                };
+export default {
+    data: () => ({
+        proyecto: "",
+        tipo: "",
+        urgente: false,
+        proyectos: [],
+        
+    }),
+    methods: {
+        registrarProyecto() {
+            const proyecto = {
+                proyecto: this.proyecto,
+                tipo: this.tipo,
+                urgente: this.urgente,
+            };
 
-                this.proyectos.push(proyecto);
-                console.log(this.proyectos);
+            this.proyectos.push(proyecto);
 
-                this.proyecto="";
-                this.tipo="";
-                this.urgente="";
-            },
+            this.proyecto = "";
+            this.tipo = "";
+            this.urgente = "";
         },
-    };
+    },
+};
 </script>
 
 <template>
@@ -44,15 +44,19 @@
 
         <div class="mb-3">
             <label for="exampleInputPassword1" class="form-check-label">Urgente</label>
-            <input v-model="urgente" type="checkbox" class="form-check-input"  />
+            <input v-model="urgente" type="checkbox" class="form-check-input" />
         </div>
         <button type="submit" class="btn btn-primary">Guardar</button>
     </form>
 
     <hr>
 
+    <h3>
+        Total Proyectos: {{rpo}}
+    </h3>
+
     <div class="table-responsive">
-        <table class="table table-dark">
+        <table class="table table-dark table-hover">
             <thead>
                 <tr>
                     <th>#</th>
@@ -63,11 +67,11 @@
             </thead>
 
             <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>Laravel app</td>
-                    <td>Larabel</td>
-                    <td class="bg.succes">true</td>
+                <tr v-for="(proyecto, index) in proyectos" :key="index">
+                    <td>{{index + 1}}</td>
+                    <td>{{proyecto.proyecto}}</td>
+                    <td>{{proyecto.tipo}}</td>
+                    <td class="proyecto.urgente ? 'bg-succes' : 'bg-danger'">{{proyecto.urgente ? "Si: No"}}</td>
                 </tr>
             </tbody>
         </table>
